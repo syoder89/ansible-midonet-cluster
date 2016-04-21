@@ -1,5 +1,8 @@
 ---
 
+- name: Install java8 ppa for packages
+  apt_repository: repo='ppa:openjdk-r/ppa'
+
 - name: Install Midonet Cluster
   apt: name=midonet-cluster state=present update_cache=yes
 
