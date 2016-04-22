@@ -1,14 +1,6 @@
-{% if zk_iface is not defined %}
-zookeeper.zookeeper_hosts="{% for host in zookeeper_hosts %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
-{% else %}
-zookeeper.zookeeper_hosts="{% for host in zookeeper_hosts %}{{ hostvars[host][zk_iface]['ipv4']['address'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
-{% endif %}
+zookeeper_hosts = "{% for host in zookeeper_hosts %}{{ hostvars[host]['ansible_ssh_host'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
 zookeeper.use_new_stack=true
-{% if cs_iface is not defined %}
-cassandra.servers="{% for host in cassandra_hosts %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
-{% else %}
-cassandra.servers="{% for host in cassandra_hosts %}{{ hostvars[host][cs_iface]['ipv4']['address'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
-{% endif %}
+cassandra.servers= "{% for host in cassandra_hosts %}{{ hostvars[host]['ansible_ssh_host'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
 cassandra.replication_factor={% if cassandra_hosts|length < 3 %}1{% else %}3{% endif %}
 
 cassandra.cluster="{{ cassandra_cluster }}"

@@ -11,3 +11,5 @@ keystone_host: localhost
 loglevel: debug
 cluster_mem: False
 dhcp_mtu: 1500
+zookeeper_hosts: "{{ groups['zookeeper_all'] }}"
+cassandra_hosts: "{{ groups['cassandra_all'] }}"
