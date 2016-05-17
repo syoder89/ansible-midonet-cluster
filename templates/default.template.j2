@@ -1,6 +1,6 @@
 zookeeper_hosts = "{% for host in zookeeper_hosts %}{{ hostvars[host]['ansible_ssh_host'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
 zookeeper.use_new_stack=true
-cassandra.servers= "{% for host in cassandra_hosts %}{{ hostvars[host]['ansible_ssh_host'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
+cassandra.servers= "{% for host in cassandra_hosts %}{{ hostvars[host]['ansible_ssh_host'] }}:9042{% if not loop.last %},{% endif %}{% endfor %}"
 cassandra.replication_factor={% if cassandra_hosts|length < 3 %}1{% else %}3{% endif %}
 
 cassandra.cluster="{{ cassandra_cluster }}"
