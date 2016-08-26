@@ -4,8 +4,8 @@
   apt_repository: repo='ppa:openjdk-r/ppa'
 
 - name: Install Midonet Cluster
-  apt: name=midonet-cluster state=present update_cache=yes
+  apt: name=midonet-cluster state=latest update_cache=yes
 
 - name: Install Midonet Cluster MEM
-  apt: name=midonet-cluster-mem state=present
+  apt: name=midonet-cluster-mem state=latest
   when: cluster_mem
